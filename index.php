@@ -5,7 +5,7 @@
 		<meta name="viewport" content="width=device-width,initial-scale=1" />
 		<meta name="description" content="A simplified reader." />
 		<meta name="author" content="Daniel Delaney" />
-		<title>Reddit</title>
+		<title>Reddit Reader</title>
 		<link rel="stylesheet" href="style.css" />
 		<link rel="icon" href="images/favicon.png" />
 		<link rel="apple-touch-icon" href="images/favicon.png" />
@@ -13,11 +13,11 @@
 	<body>
 		<header>
 			<hgroup>
-				<h1><a href="http://danieldelaney.net/r/">reddit</a></h1>
-				<h2>a simplified reader</h2>
+				<h1><a href="../reddit-reader">reddit reader</a></h1>
+				<h2>a readable reddit experience</h2>
 			</hgroup>
 		</header>
-		<a href="http://danieldelaney.net/r/" id="alien">
+		<a href="../reddit-reader" id="alien">
 			<img src="images/reddit-alien.png" alt="Reddit" />
 		</a>
 		<section id="reddit-data">
