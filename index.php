@@ -14,7 +14,7 @@
 		<header>
 			<hgroup>
 				<h1><a href="../reddit-reader">reddit reader</a></h1>
-				<h2>a readable reddit experience</h2>
+				<h2>a readable reddit</h2>
 			</hgroup>
 		</header>
 		<a href="../reddit-reader" id="alien">
