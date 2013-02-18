@@ -1,15 +1,13 @@
 <?php
-function generateContent()
-{
-	// get data from reddit
-	$fetchedData = getData();
 
-	// sort out html from that data
-	$html = writeHTML($fetchedData);
+// get data from reddit
+$fetchedData = getData();
 
-	// write the html on the page
-	echo $html;
-}
+// sort out html from that data
+$html = writeHTML($fetchedData);
+
+// write the html on the page
+echo $html;
 
 function getData()
 {

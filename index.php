@@ -1,33 +1,27 @@
-<!doctype html>
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width,initial-scale=1" />
-		<meta name="description" content="A simplified reader." />
-		<meta name="author" content="Daniel Delaney" />
-		<title>Reddit Reader</title>
-		<link rel="stylesheet" href="style.css" />
-		<link rel="icon" href="images/favicon.png" />
-		<link rel="apple-touch-icon" href="images/favicon.png" />
-	</head>
-	<body>
-		<header>
-			<hgroup>
-				<h1><a href="../reddit-reader">reddit reader</a></h1>
-				<h2>a readable reddit</h2>
-			</hgroup>
-		</header>
-		<a href="../reddit-reader" id="alien">
-			<img src="images/reddit-alien.png" alt="Reddit" />
-		</a>
-		<section id="reddit-data">
-			<?php
-				include 'functions.php';
-				generateContent();
-			?>
-		</section>
-		<footer>
-			Made by <a href="http://danieldelaney.net/" target="_blank">Daniel Delaney</a>
-		</footer>
-	</body>
-</html>
+<?php include 'header.php'; ?>
+<img id="alien" src="images/reddit-alien.png" alt="Reddit" />
+<section id="reddit-data" class="page-content">
+	<?php include 'functions.php'; ?>
+</section>
+<script>
+	var subs = getUrlVars()["subs"]
+	var config = localStorage.getItem("subs");
+	if (config != subs)
+	{
+		window.location = "./?subs=" + config;
+	}
+
+	function getUrlVars()
+	{
+	    var vars = [], hash;
+	    var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+	    for(var i = 0; i < hashes.length; i++)
+	    {
+		hash = hashes[i].split('=');
+		vars.push(hash[0]);
+		vars[hash[0]] = hash[1];
+	    }
+	    return vars;
+	}
+</script>
+<?php include 'footer.php'; ?>
