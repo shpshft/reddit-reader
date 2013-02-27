@@ -65,7 +65,7 @@ function writeHTML($fetchedData)
 			if ($numComments > 0)
 			{
 				// there are comments; format a link to them
-				$comments = '<a href="http://reddit.com' . $commentsLink . '" target="_blank" class="comments">' . $numComments . ' comments</a>';
+				$comments = '<div class="comments"><a href="http://reddit.com' . $commentsLink . '" target="_blank">' . $numComments . ' comments</a>';
 			}
 			else
 			{
@@ -74,7 +74,7 @@ function writeHTML($fetchedData)
 			}
 
 			// format the post and add it to the html we'll return
-			$html .= '<article><h1><a href="' . $url . '" target="_blank">' . $title . '</a></h1><div class="meta"><span class="subreddit">' . $subreddit . '</span>' . $comments . '</div></article>';
+			$html .= '<article><h1><a href="' . $url . '" target="_blank">' . $title . '</a></h1><div class="meta"><div class="subreddit">' . $subreddit . '</div>' . $comments . '</div></article>';
 		}
 	}
 	else

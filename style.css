@@ -17,8 +17,9 @@ article h1 a{display:block;color:#fff;text-decoration:none;font-size:1.25em;font
 article h1 a:hover{opacity:0.75;}
 .meta{overflow:hidden;}
 .subreddit{float:left;}
-.comments{color:#DD4A38;text-decoration:none;float:right;}
-.comments:hover{text-decoration:underline;}
+.comments{float:right;}
+.comments a{color:#DD4A38;text-decoration:none;}
+.comments a:hover{text-decoration:underline;}
 .error{font-size:1.5em;text-align:center;font-weight:200;padding:1em 5%;line-height:1.6;}
 /*footer*/
 footer{text-align:center;padding:3em 0;border-top:solid 0.2em #DD4A38;}
