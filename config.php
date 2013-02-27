@@ -5,7 +5,6 @@
 	</div>
 	<ul id="active-subs"></ul>
 </section>
-<script src="scripts/jquery.js"></script>
 <script>
 	// on page load, get existing config
 	var config = localStorage.getItem("subs");

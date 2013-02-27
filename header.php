@@ -9,6 +9,7 @@
 	<link rel="stylesheet" href="style.css" />
 	<link rel="icon" href="images/favicon.png" />
 	<link rel="apple-touch-icon" href="images/favicon.png" />
+	<script src="scripts/jquery.js"></script>
 </head>
 <body>
 	<header>

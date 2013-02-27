@@ -1,27 +1,17 @@
 <?php include 'header.php'; ?>
 <img id="alien" src="images/reddit-alien.png" alt="Reddit" />
-<section id="reddit-data" class="page-content">
-	<?php include 'functions.php'; ?>
-</section>
+<section id="reddit-data" class="page-content"></section>
 <script>
-	var subs = getUrlVars()["subs"]
-	var config = localStorage.getItem("subs");
-	if (config != subs)
-	{
-		window.location = "./?subs=" + config;
-	}
+	var request = "functions.php?subs=" + localStorage.getItem("subs"); 
 
-	function getUrlVars()
+	$.get(request, function(data)
 	{
-	    var vars = [], hash;
-	    var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
-	    for(var i = 0; i < hashes.length; i++)
-	    {
-		hash = hashes[i].split('=');
-		vars.push(hash[0]);
-		vars[hash[0]] = hash[1];
-	    }
-	    return vars;
-	}
+		$('#reddit-data').html(data);
+	})
+	.error(function()
+	{
+		$('#reddit-data').html('<div class="error">No valid data.</div>');
+	});
+
 </script>
 <?php include 'footer.php'; ?>
