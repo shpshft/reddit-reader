@@ -25,8 +25,8 @@ function getData()
 	}
 	else
 	{
-		// there are no special options; plan on getting everything unfiltered
-		$jsonURL = "http://www.reddit.com/r/all/.json";
+		// there are no special options; get my default subs
+		$jsonURL = "http://www.reddit.com/r/technology+science+webdev+programming+design+crypto+bitcoin+darknetplan+linux+netsec+privacy/.json";
 	}
 
 	// make the request for the appropriate json
@@ -61,17 +61,8 @@ function writeHTML($fetchedData)
 			$numComments = $post->data->num_comments;
 			$commentsLink = $post->data->permalink;
 
-			// determine whether there are comments for this post
-			if ($numComments > 0)
-			{
-				// there are comments; format a link to them
-				$comments = '<div class="comments"><a href="http://reddit.com' . $commentsLink . '" target="_blank">' . $numComments . ' comments</a>';
-			}
-			else
-			{
-				// there are no comments
-				$comments = "";
-			}
+			// format a link to the comments page
+			$comments = '<div class="comments"><a href="http://reddit.com' . $commentsLink . '" target="_blank">' . $numComments . ' comments</a>';
 
 			// format the post and add it to the html we'll return
 			$html .= '<article><h1><a href="' . $url . '" target="_blank">' . $title . '</a></h1><div class="meta"><div class="subreddit">' . $subreddit . '</div>' . $comments . '</div></article>';

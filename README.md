@@ -4,10 +4,8 @@ A minimalist view of Reddit content. See it in action here:
 
 http://danieldelaney.net/r/
 
-## How it works
+# How it Works
 
-Pulls JSON (e.g. http://reddit.com/r/all/.json) and spits out HTML, all via PHP and JavaScript.
+By default it shows some of my favorite subreddits, but there's a configuration page where you can easily manage what you'd like to see.
 
-## How to use it
-
-By default it'll show the contents of /r/all (http://reddit.com/r/all/.json), but you can specify subreddits you want to see with the Configure page.
+Technically, PHP is used to fetch the JSON, and JavaScript manages the local storage of preferences as well as data flying on and off of the page.

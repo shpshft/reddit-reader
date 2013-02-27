@@ -3,17 +3,5 @@
 <section id="reddit-data" class="page-content">
 	<div class="error">Fetching...</div>
 </section>
-<script>
-	var request = "functions.php?subs=" + localStorage.getItem("subs"); 
-
-	$.get(request, function(data)
-	{
-		$('#reddit-data').html(data);
-	})
-	.error(function()
-	{
-		$('#reddit-data').html('<div class="error">No valid data.</div>');
-	});
-
-</script>
+<script src="scripts/content.js"></script>
 <?php include 'footer.php'; ?>

@@ -25,13 +25,13 @@ article h1 a:hover{opacity:0.75;}
 footer{text-align:center;padding:3em 0;border-top:solid 0.2em #DD4A38;}
 footer a{color:#fff;text-decoration:none;font-weight:bold;}
 /*config*/
-#active-subs{list-style:none;}
-#active-subs li{padding:1em 5%;border-top:solid 0.2em #1f2630;line-height:1.6;}
-#active-subs li:hover{color:#fff;cursor:pointer;}
-#active-subs li::after{display:block;content:'remove';color:#DD4A38;float:right;padding:0 0.5em;}
-#active-subs li:hover:after{text-decoration:underline;cursor:pointer;}
 #add-sub{padding:1em 5%;}
-#new-sub{display:block;width:100%;padding:0.5em;border:solid 0.2em #DD4A38;box-sizing:border-box;}
+#new-sub{display:block;width:100%;padding:0.5em;box-sizing:border-box;}
+#active-subs{list-style:none;}
+#active-subs li{padding:1em 5%;border-top:solid 0.2em #1f2630;line-height:1.6;overflow:hidden;}
+#active-subs .name{float:left;}
+#active-subs .remove{display:block;color:#DD4A38;float:right;}
+#active-subs .remove:hover{text-decoration:underline;cursor:pointer;}
 /*screen sizes*/
 header hgroup,.page-content,footer{max-width:40em;margin:0 auto;}
 @media screen and (min-width:40em)
