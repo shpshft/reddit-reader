@@ -10,6 +10,9 @@
 	<link rel="icon" href="images/favicon.png" />
 	<link rel="apple-touch-icon" href="images/favicon.png" />
 	<script src="scripts/jquery.js"></script>
+	<!--[if lt IE 9]>
+		<script src="scripts/html5.js"></script>
+	<![endif]-->
 </head>
 <body>
 <header>
