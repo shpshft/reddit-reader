@@ -8,14 +8,14 @@ body{line-height:1;font-size:100%;font-family:"helvetica neue",helvetica,arial,s
 header{background:#1f2630;}
 header hgroup{padding:0.5em 5%;overflow:hidden;}
 header h1{float:left;}
-header h1 a{color:#fff;font-weight:bold;text-decoration:none;}
-#config-link{color:#9099A3;float:right;text-decoration:none;}
+header h1 a{color:#fff;font-weight:bold;text-decoration:none;width:auto;}
+#config-link{display:block;color:#9099A3;float:right;text-decoration:none;}
 #config-link:hover{color:#DD4A38;}
 /*alien*/
 #alien{display:block;clear:both;width:15%;margin:2em auto;}
 /*reddit data*/
 article{padding:1em 5%;border-top:solid 0.2em #1f2630;line-height:1.6;}
-article h1 a{display:block;color:#fff;text-decoration:none;font-size:1.25em;font-weight:200;margin-bottom:0.5em;}
+article h1 a{color:#fff;text-decoration:none;font-size:1.25em;font-weight:200;margin-bottom:0.5em;}
 article h1 a:hover{opacity:0.75;}
 .meta{overflow:hidden;}
 .subreddit{float:left;}
