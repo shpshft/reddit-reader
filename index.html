@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width" />
+	<meta name="description" content="A simplified reader." />
+	<meta name="author" content="Daniel Delaney" />
+	<title>Reddit Reader</title>
+	<link rel="stylesheet" href="style.css" />
+	<link rel="icon" href="images/favicon.png" />
+	<link rel="apple-touch-icon" href="images/favicon.png" />
+</head>
+<body>
+	<header>
+		<hgroup>
+			<h1><a href="/">reddit reader</a></h1>
+			<a id="config-link">subreddits</a>
+		</hgroup>
+	</header>
+	<section id="config">
+		<div class="page-content">
+			<div id="add-sub">
+				<input id="new-sub" placeholder="type a subreddit name" autocapitalize="off" autocorrect="off" />
+			</div>
+			<ul id="active-subs"></ul>
+		</div>
+		<a id="close-config">close</a>
+	</section>
+	<img id="alien" src="images/reddit-alien.png" alt="Reddit" />
+	<section id="reddit-data" class="page-content">
+		<div class="error">Fetching...</div>
+	</section>
+	<footer>
+		made by <a href="http://danieldelaney.net/" target="_blank">daniel delaney</a>
+	</footer>
+	<script src="scripts/jquery.js"></script>
+	<script>
+		getContent();
+		
+		function getContent()
+		{
+			$("#reddit-data").fadeOut();
+
+			var request = "reddit-data.php";
+
+			// build request with desired subs
+			request = request + "?subs=" + JSON.parse(localStorage.getItem("subs")).toString().replace(/,/g,"+");
+
+			// make the request
+			$.get(request, function(data)
+			{
+				$('#reddit-data').html(data);
+			})
+			.error(function()
+			{
+				$('#reddit-data').html('<div class="error">No valid data.</div>');
+			});
+
+			$("#reddit-data").fadeIn();
+		}
+	</script>
+	<script src="scripts/config.js"></script>
+</body>
+</html>
