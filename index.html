@@ -9,11 +9,12 @@
 	<link rel="stylesheet" href="style.css" />
 	<link rel="icon" href="images/favicon.png" />
 	<link rel="apple-touch-icon" href="images/favicon.png" />
+	<script src="scripts/html5.js"></script>
 </head>
 <body>
 	<header>
 		<hgroup>
-			<h1><a href="/">reddit reader</a></h1>
+			<h1><a href=".">reddit reader</a></h1>
 			<a id="config-link">subreddits</a>
 		</hgroup>
 	</header>
@@ -44,7 +45,10 @@
 			var request = "reddit-data.php";
 
 			// build request with desired subs
-			request = request + "?subs=" + JSON.parse(localStorage.getItem("subs")).toString().replace(/,/g,"+");
+			if (localStorage.getItem("subs"))
+			{
+				request = request + "?subs=" + JSON.parse(localStorage.getItem("subs")).toString().replace(/,/g,"+");
+			}
 
 			// make the request
 			$.get(request, function(data)
