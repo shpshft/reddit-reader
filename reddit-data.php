@@ -1,78 +1,89 @@
-<?php
+<div id="result">
+	<?php
+		// we'll be returning an object decoded from json
+		$redditData = "";
 
-// get data from reddit
-$fetchedData = getData();
+		// determine if there are any special options in the query string param "subs"
+		$specialSubreddits = htmlspecialchars($_GET["subs"]);
 
-// sort out html from that data
-$html = writeHTML($fetchedData);
-
-// write the html on the page
-echo $html;
-
-function getData()
-{
-	// we'll be returning an object decoded from json
-	$redditData = "";
-
-	// determine if there are any special options in the query string param "subs"
-	$specialSubreddits = htmlspecialchars($_GET["subs"]);
-	
-	if ($specialSubreddits)
-	{
-		// there are special options; url encode them
-		$specialSubreddits = urlencode($specialSubreddits);
-		$jsonURL = "http://www.reddit.com/r/" . $specialSubreddits . "+/.json";
-	}
-	else
-	{
-		// there are no special options; get my default subs
-		$jsonURL = "http://www.reddit.com/r/technology+science+webdev+programming+design+crypto+bitcoin+darknetplan+linux+netsec+privacy/.json";
-	}
-
-	// make the request for the appropriate json
-	$ch = curl_init();
-	curl_setopt($ch, CURLOPT_URL, $jsonURL);
-	curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-	$redditData = curl_exec($ch);
-	curl_close($ch);
-
-	// decode it
-	$redditData = json_decode($redditData);
-
-	// return it
-	return $redditData;
-}
-
-function writeHTML($fetchedData)
-{
-	// we'll be returning html
-	$html = "";
-
-	// validate: is the data we have any good?
-	if($fetchedData->data->children)
-	{
-		// it's good data; loop through all the posts and display them with useful details
-		foreach($fetchedData->data->children as $post)
+		if ($specialSubreddits)
 		{
-			// identify all the post details
-			$title = $post->data->title;
-			$url = $post->data->url;
-			$subreddit = strtolower($post->data->subreddit);
-			$numComments = $post->data->num_comments;
-			$commentsLink = $post->data->permalink;
-
-			// format a link to the comments page
-			$comments = '<div class="comments"><a href="http://reddit.com' . $commentsLink . '" target="_blank">' . $numComments . ' comments</a>';
-
-			// format the post and add it to the html we'll return
-			$html .= '<article><h1><a href="' . $url . '" target="_blank">' . $title . '</a></h1><div class="meta"><div class="subreddit">' . $subreddit . '</div>' . $comments . '</div></article>';
+			// there are special options; url encode them
+			$specialSubreddits = urlencode($specialSubreddits);
+			$jsonURL = "http://www.reddit.com/r/" . $specialSubreddits . "+/.json";
 		}
-	}
-	else
-	{
-		$html = '<div class="error">No valid data was received from Reddit.</div>';
-	}
+		else
+		{
+			// there are no special options; get my default subs
+			$jsonURL = "http://www.reddit.com/r/all/.json";
+		}
 
-	return $html;
-}
-?>
+		// make the request for the appropriate json
+		$ch = curl_init();
+		curl_setopt($ch, CURLOPT_URL, $jsonURL);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+		$redditData = curl_exec($ch);
+		curl_close($ch);
+
+		// write it
+		print_r($redditData);
+	?>
+</div>
+<script>
+	// json is assumed to be present thanks to server-side code
+	// pull json from html
+	var redditData = $("#result").html();
+	// clear out the html
+	$("#result").html('');
+	// make it readable
+	redditData = $.parseJSON(redditData);
+	// loop through it
+	$.each(redditData.data.children,function(key,val){
+		// define the post root
+		var post = val.data;
+
+		// check for images to display
+		if(/.jpg$/.test(post.url)
+				|| /.jpeg$/.test(post.url)
+				|| /.gif$/.test(post.url)
+				|| /.png$/.test(post.url)){
+			preview = '<img src="' + post.url + '" alt="preview" class="preview-image" />';
+		}
+		else if(/imgur.com/.test(post.url)){
+			if(/\/a\//.test(post.url) || /gallery/.test(post.url)){
+				preview = "";
+			}
+			else{
+				preview = post.url;
+				preview = preview.replace("http://","");
+				preview = preview.replace("www.","");
+				preview = "http://i." + preview + ".jpg";
+				preview = '<img src="' + preview + '" alt="preview" class="preview-image built-from-imgur" />';
+			}
+
+		}
+		else{
+			preview = '';
+		}
+
+		// spit out html
+		var html =
+			'<article>' +
+				'<h1>' +
+					'<a href="' + post.url + '" target="_blank">' +
+						post.title +
+					'</a>' +
+				'</h1>' +
+				preview +
+				'<div class="meta">' +
+					'<div class="subreddit">' + post.subreddit + '</div>' +
+					'<div class="comments">' +
+						'<a href="http://reddit.com' + post.permalink + '" target="_blank">' +
+							post.num_comments + ' comments' +
+						'</a>' +
+					'</div>' +
+				'</div>' +
+			'</article>';
+		$("#result").append(html);
+	});
+</script>

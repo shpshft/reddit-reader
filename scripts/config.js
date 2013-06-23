@@ -36,15 +36,34 @@ function save()
 {
 	localStorage['subs'] = JSON.stringify(config);
 	generateList();
+	getContent();
 }
 
 // handle ui events which initiate addition and subtraction of subreddits
+$(document).on("click", "#config-link", function()
+{
+	$("#config").slideToggle();
+});
+
 $("#new-sub").keypress(function(e)
 {
 	if(e.which == 13)
 	{
 		var subredditName = $("#new-sub").val();
-		addSubreddit(subredditName);
+		if(!/\//.test(subredditName))
+		{
+			addSubreddit(subredditName);
+		}
+		else
+		{
+			alert('Slashes (e.g. "/") don\'t belong in subreddit names. We\'ve done our best to guess what you meant.');
+			// get everything from the last slash forward
+			subredditName = subredditName.substring(subredditName.lastIndexOf("/"));
+			// chop off the last slash
+			subredditName = subredditName.substring(1);
+			// add the thing
+			addSubreddit(subredditName);
+		}
 		$("#new-sub").val("");
 	}
 });
@@ -53,4 +72,9 @@ $(document).on("click", ".remove", function()
 {
 	var subredditName = $(this).parent().find(".name").text();
 	removeSubreddit(subredditName); 
+});
+
+$(document).on("click", "#close-config", function()
+{
+	$("#config").slideUp();
 });
