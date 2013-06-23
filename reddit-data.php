@@ -43,28 +43,7 @@
 		var post = val.data;
 
 		// check for images to display
-		if(/.jpg$/.test(post.url)
-				|| /.jpeg$/.test(post.url)
-				|| /.gif$/.test(post.url)
-				|| /.png$/.test(post.url)){
-			preview = '<img src="' + post.url + '" alt="preview" class="preview-image" />';
-		}
-		else if(/imgur.com/.test(post.url)){
-			if(/\/a\//.test(post.url) || /gallery/.test(post.url)){
-				preview = "";
-			}
-			else{
-				preview = post.url;
-				preview = preview.replace("http://","");
-				preview = preview.replace("www.","");
-				preview = "http://i." + preview + ".jpg";
-				preview = '<img src="' + preview + '" alt="preview" class="preview-image built-from-imgur" />';
-			}
-
-		}
-		else{
-			preview = '';
-		}
+		var preview = buildPreview(post.url);
 
 		// spit out html
 		var html =
@@ -86,4 +65,38 @@
 			'</article>';
 		$("#result").append(html);
 	});
+
+	function buildPreview(url)
+	{
+		// if it ends with an image filetype, throw it in an img tag
+		if(/.jpg$/.test(url)
+				|| /.jpeg$/.test(url)
+				|| /.gif$/.test(url)
+				|| /.png$/.test(url)){
+			preview = '<img src="' + url + '" alt="preview" class="preview-image" />';
+		}
+		else if(/imgur.com/.test(url)){
+			// if it's an imgur gallery, give up
+			if(/\/a\//.test(url) || /gallery/.test(url)){
+				preview = "";
+			}
+			// if it's from imgur,
+			// not a gallery,
+			// and not an image,
+			// they posted it wrong, fix it to be an image
+			else{
+				preview = url;
+				preview = preview.replace("http://","");
+				preview = preview.replace("www.","");
+				preview = "http://i." + preview + ".jpg";
+				preview = '<img src="' + preview + '" alt="preview" class="preview-image built-from-imgur" />';
+			}
+
+		}
+		else{
+			preview = '';
+		}
+
+		return preview;
+	}
 </script>

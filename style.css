@@ -31,7 +31,7 @@ footer a{color:#fff;text-decoration:none;font-weight:bold;}
 #config{display:none;background:#fff;}
 #add-sub{padding:1em 5%;}
 #new-sub{display:block;width:100%;padding:0.5em;border:solid 0.1em #ccc;box-sizing:border-box;border-radius:0.25em;}
-#active-subs{list-style:none;}
+#active-subs{list-style:none;padding-bottom:1em;}
 #active-subs li{padding:1em 5%;border-top:solid 0.2em #eee;line-height:1.6;overflow:hidden;}
 #active-subs .name{float:left;color:#666;}
 #active-subs .remove{display:block;color:#DD4A38;float:right;}
