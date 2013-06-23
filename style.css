@@ -29,10 +29,11 @@ footer{background:#f9f9f9;text-align:center;padding:1.5em 0;margin-top:1.5em;bor
 footer a{color:#1f2630;text-decoration:none;font-weight:bold;}
 /*config*/
 #config{display:none;background:#eee;}
-#add-sub{padding:1.5em 1em 1em 1em;}
+#add-sub{padding:1.5em 1em 0.5em 1em;}
 #new-sub{display:block;width:100%;padding:0.5em;box-sizing:border-box;}
 #active-subs{list-style:none;margin-bottom:0.5em;}
 #active-subs li{padding:0.75em 1em;border-top:solid 0.1em #ccc;line-height:1.6;overflow:hidden;}
+#active-subs li:first-child{border-top:0;}
 #active-subs .name{float:left;color:#666;}
 #active-subs .remove{display:block;color:#DD4A38;float:right;}
 #active-subs .remove:hover{text-decoration:underline;cursor:pointer;}
