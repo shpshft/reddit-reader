@@ -43,6 +43,7 @@ function save()
 $(document).on("click", "#config-link", function()
 {
 	$("#config").slideToggle();
+	$(this).toggleClass("active");
 });
 
 $("#new-sub").keypress(function(e)
@@ -77,4 +78,5 @@ $(document).on("click", ".remove", function()
 $(document).on("click", "#close-config", function()
 {
 	$("#config").slideUp();
+	$("#config-link").toggleClass("active");
 });

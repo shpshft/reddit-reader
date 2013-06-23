@@ -10,12 +10,12 @@
 		{
 			// there are special options; url encode them
 			$specialSubreddits = urlencode($specialSubreddits);
-			$jsonURL = "http://www.reddit.com/r/" . $specialSubreddits . "+/.json";
+			$jsonURL = "http://www.reddit.com/r/" . $specialSubreddits . "+/.json?limit=100";
 		}
 		else
 		{
 			// there are no special options; get my default subs
-			$jsonURL = "http://www.reddit.com/r/all/.json";
+			$jsonURL = "http://www.reddit.com/r/all/.json?limit=100";
 		}
 
 		// make the request for the appropriate json
