@@ -68,33 +68,27 @@
 
 	function buildPreview(url)
 	{
-		// if it ends with an image filetype, throw it in an img tag
-		if(/.jpg$/.test(url)
-				|| /.jpeg$/.test(url)
-				|| /.gif$/.test(url)
-				|| /.png$/.test(url)){
-			preview = '<img src="' + url + '" alt="preview" class="preview-image" />';
-		}
-		else if(/imgur.com/.test(url)){
-			// if it's an imgur gallery, give up
-			if(/\/a\//.test(url) || /gallery/.test(url)){
-				preview = "";
-			}
-			// if it's from imgur,
-			// not a gallery,
-			// and not an image,
-			// they posted it wrong, fix it to be an image
-			else{
-				preview = url;
-				preview = preview.replace("http://","");
-				preview = preview.replace("www.","");
-				preview = "http://i." + preview + ".jpg";
-				preview = '<img src="' + preview + '" alt="preview" class="preview-image built-from-imgur" />';
-			}
+		preview = '';
+		var isImage = false;
+		var origin = '';
 
+		// check for image
+		if(/.jpg$/.test(url) || /.jpeg$/.test(url) || /.gif$/.test(url) || /.png$/.test(url)){
+			isImage = true;
+			origin = 'clean-ext';
+		} else if (/imgur.com/.test(url) && !/\/a\//.test(url) && !/gallery/.test(url)) {
+			// check for incorrectly linked image and correct
+			url = url.replace("http://","");
+			url = url.replace("www.","");
+			url = "http://i." + url + ".jpg";
+			isImage = true;
+			origin = 'imgur-single-hack';
+		} else if (/imgur.com/.test(url) && /\/a\//.test(url)) {
+			preview = '<iframe class="imgur-album" frameborder="0" src="' + url + '/embed"></iframe>';
 		}
-		else{
-			preview = '';
+
+		if (isImage){
+			preview = '<img src="' + url + '" alt="preview" class="preview-image ' + origin + '" />';
 		}
 
 		return preview;

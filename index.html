@@ -21,16 +21,21 @@
 	<section id="config">
 		<div class="page-content">
 			<div id="add-sub">
-				<input id="new-sub" placeholder="type a subreddit name" autocapitalize="off" autocorrect="off" />
+				<label>add a subreddit by name</label>
+				<div id="new-sub">
+					<input placeholder="e.g. &ldquo;askscience&rdquo;" autocapitalize="off" autocorrect="off" />
+					<a id="btn-add-sub">add</a>
+				</div>
 			</div>
 			<ul id="active-subs"></ul>
 			<a id="close-config">close</a>
 		</div>
 	</section>
-	<img id="alien" src="images/reddit-alien.png" alt="Reddit" />
-	<section id="reddit-data" class="page-content">
-		<div class="error">Fetching...</div>
-	</section>
+	<div class="page">
+		<img id="alien" src="images/reddit-alien.png" alt="Reddit" />
+		<section id="reddit-data" class="page-content">
+		</section>
+	</div>
 	<footer>
 		made by <a href="http://danieldelaney.net/" target="_blank">daniel delaney</a>
 	</footer>
@@ -40,6 +45,7 @@
 		
 		function getContent()
 		{
+			// fade out
 			$("#reddit-data").fadeOut();
 
 			var request = "reddit-data.php";
@@ -54,13 +60,13 @@
 			$.get(request, function(data)
 			{
 				$('#reddit-data').html(data);
+				// fade back in
+				$("#reddit-data").fadeIn();
 			})
 			.error(function()
 			{
 				$('#reddit-data').html('<div class="error">No valid data.</div>');
 			});
-
-			$("#reddit-data").fadeIn();
 		}
 	</script>
 	<script src="scripts/config.js"></script>
