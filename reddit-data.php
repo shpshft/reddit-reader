@@ -10,12 +10,12 @@
 		{
 			// there are special options; url encode them
 			$specialSubreddits = urlencode($specialSubreddits);
-			$jsonURL = "http://www.reddit.com/r/" . $specialSubreddits . "+/.json?limit=100";
+			$jsonURL = "http://www.reddit.com/r/" . $specialSubreddits . "+/.json?limit=30";
 		}
 		else
 		{
 			// there are no special options; get my default subs
-			$jsonURL = "http://www.reddit.com/r/all/.json?limit=100";
+			$jsonURL = "http://www.reddit.com/r/all/.json?limit=30";
 		}
 
 		// make the request for the appropriate json
@@ -37,6 +37,10 @@
 	$("#result").html('');
 	// make it readable
 	redditData = $.parseJSON(redditData);
+	// keep track of how many we've written to the page
+	var postCount = 0;
+	// build html
+	var html = '';
 	// loop through it
 	$.each(redditData.data.children,function(key,val){
 		// define the post root
@@ -46,25 +50,36 @@
 		var preview = buildPreview(post.url);
 
 		// spit out html
-		var html =
-			'<article>' +
-				'<h1>' +
+		if (postCount == 0){
+			html = html + '<div class="col-lg-4">';
+		}
+		
+		html = html +
+			'<article class="panel">' +
+				'<h4 class="title">' +
 					'<a href="' + post.url + '" target="_blank">' +
 						post.title +
 					'</a>' +
-				'</h1>' +
+				'</h4>' +
 				preview +
-				'<div class="meta">' +
-					'<div class="subreddit">' + post.subreddit + '</div>' +
-					'<div class="comments">' +
+				'<div class="meta panel-footer">' +
+					'<div class="subreddit pull-left text-muted">' + post.subreddit + '</div>' +
+					'<div class="comments pull-right">' +
 						'<a href="http://reddit.com' + post.permalink + '" target="_blank">' +
 							post.num_comments + ' comments' +
 						'</a>' +
 					'</div>' +
 				'</div>' +
 			'</article>';
-		$("#result").append(html);
+			
+		// increment post count
+		postCount = postCount + 1;
+		if (postCount == 10 || postCount == 20){
+			html = html + '</div><div class="col-lg-4">';
+		}
 	});
+	
+	$("#result").append(html);
 
 	function buildPreview(url)
 	{

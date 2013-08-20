@@ -2,40 +2,52 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<meta name="description" content="A simplified reader." />
 	<meta name="author" content="Daniel Delaney" />
 	<title>Reddit Reader</title>
-	<link rel="stylesheet" href="style.css" />
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+	<link href="css/font-awesome.min.css" rel="stylesheet">
+	<link href="css/theme.css" rel="stylesheet">
 	<link rel="icon" href="images/favicon.png" />
 	<link rel="apple-touch-icon" href="images/favicon.png" />
 	<script src="scripts/html5.js"></script>
 </head>
 <body>
 	<header>
-		<hgroup>
-			<h1><a href=".">reddit reader</a></h1>
-			<a id="config-link">subreddits</a>
-		</hgroup>
-	</header>
-	<section id="config">
-		<div class="page-content">
-			<div id="add-sub">
-				<div id="new-sub">
-					<input placeholder="e.g. &ldquo;askscience&rdquo;" autocapitalize="off" autocorrect="off" />
-					<a id="btn-add-sub">add</a>
-				</div>
+		<div class="navbar navbar-fixed-top">
+			<div class="container">
+				<a href="." class="navbar-brand">reddit reader</a>
+				<a id="config-link" class="pull-right hidden-sm btn btn-default" href="#"><i class="icon icon-cog"></i> subreddits</span></a>
 			</div>
-			<ul id="active-subs"></ul>
 		</div>
-	</section>
-	<div class="page">
-		<img id="alien" src="images/reddit-alien.png" alt="Reddit" />
-		<section id="reddit-data" class="page-content"></section>
+	</header>
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-6 col-lg-offset-3">
+				<section id="config" class="visible-sm-custom">
+					<div class="panel">
+						<div class="input-group">
+							<input type="text" id="new-sub-input" class="form-control" placeholder="e.g. &ldquo;askscience&rdquo;" autocapitalize="off" autocorrect="off" />
+							<span class="input-group-btn">
+								<a id="new-sub-button" href="#" class="btn btn-success">add</a>
+							</span>
+						</div>
+						<ul id="active-subs" class="list-group"></ul>
+					</div>
+				</section>
+			</div>
+		</div>
+		<img id="alien" class="hidden-sm" src="images/reddit-alien.png" alt="Reddit" />
+		<div class="row">
+			<section id="reddit-data"></section>
+		</div>		
 	</div>
-	<footer>made by <a href="http://danieldelaney.net/" target="_blank">daniel delaney</a></footer>
+	<footer>
+		<p class="text-muted text-center">made by <a href="http://danieldelaney.net/" target="_blank">daniel delaney</a></p>
+	</footer>
 	<script src="scripts/jquery.js"></script>
-	<script>
+	<script>	
 		getContent();
 		function getContent() {
 			$('#reddit-data').html('<div class="error">Loading...</div>');

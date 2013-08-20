@@ -1,0 +1,36 @@
+body{padding-top:70px;background:#eee;text-rendering:optimizeLegibility;-webkit-font-smoothing:antialiased;}
+a,a:hover{color:#dd4a38;}
+.navbar{background:#fff;border-bottom:solid 1px #ccc;box-shadow:0 1px 1px rgba(0,0,0,0.05)}
+.navbar-brand{color:#bbb;}
+#config-link{border-color:#ef4429;color:#ef4429;margin-top:8px;}
+#config-link:hover{background-color:#ef4429;color:#fff;}
+#config .panel{background:#f6f6f6;}
+#config input[type=text]{font-size:16px;}
+#new-sub-button{padding-left:1.5em;padding-right:1.5em;}
+#config .remove:hover{text-decoration:none;}
+#config .remove i{color:#ef4429;}
+#alien{display:block;margin:1em auto 2em auto;width:8em;}
+#reddit-data{overflow:hidden;}
+.panel{border-color:#ccc;}
+.panel-footer{background:#f6f6f6;}
+h4{margin-top:0;line-height:1.4em;}
+h4 a{margin-top:0;color:#555;font-weight:400;}
+.preview-image{display:block;width:100%;margin:1em auto;margin: 1em -15px -15px -15px;}
+.imgur-album{width:100%;height:550px;}
+.meta{overflow:hidden;}
+.error{font-size:2em;text-align:center;color:#ccc;}
+footer{margin:2em 0;padding-top:2em;border-top:solid 1px #ccc;}
+@media (max-width:768px){
+	.visible-sm-custom{display:block!important;}
+	body{padding-top:0;}
+	.navbar-fixed-top{position:relative;}
+}
+@media (min-width:768px) and (max-width: 991px)
+{
+	.visible-sm-custom{display:none;}
+}
+@media (min-width:992px){
+	.visible-sm-custom{display:none;}
+}
+::selection{color:#fff;background:#dd4a38;}
+::-moz-selection{color:#fff;background:#dd4a38;}
